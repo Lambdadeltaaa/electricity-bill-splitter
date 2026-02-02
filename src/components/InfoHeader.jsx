@@ -1,7 +1,7 @@
 export default function InfoHeader() {
     return (
         <header className="info-header container mt-5 mb-5">
-            <h1 className="mb-3">Electricity Bill Calculator</h1>
+            <h1 className="mb-3">Electricity Bill Calculator (Malaysia)</h1>
             
             <ul className="list-group list-group-flush">
                 <li className="list-group-item">This calculator just uses proportion to calculate the price to be paid by each person.</li>
