@@ -7,8 +7,6 @@ export default function NumPeopleInput({setNumPeople}) {
         setNumPeople(Number(inputValue));
     };
 
-    
-    
     return (
         <section className="num-people-input container mb-5">
             <div className="col-12 col-md-4">
