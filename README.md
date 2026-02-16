@@ -1,4 +1,5 @@
 # Electricity Bill Calculator (Malaysia)
-> ⚠️ **Disclaimer**: Built mainly for personal use only.
-- A simple web app used to help calculate electricity bills on the go and may not be fully accurate.
-- Use at your own risk.
+> **Personal utility tool. Not intended for public or production use.**
+
+A small web app I quickly built to split electricity bills between housemates when needed.  
+It uses proportional splitting to calculate, and assumes usage stays below ~1000 kWh to avoid complex edge cases.

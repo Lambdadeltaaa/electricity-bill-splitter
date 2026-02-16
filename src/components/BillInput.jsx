@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function BillInput({numPeople, setBillData}) {
     const [inputValue, setInputValue] = useState({
@@ -7,36 +7,44 @@ export default function BillInput({numPeople, setBillData}) {
         kwhPeople: [],
     });
 
-    // used so that the table will render the correct amount of rows when numPeople changes each time
-    useEffect(() => {
-        if (!Number.isInteger(numPeople) || Number(numPeople) <= 0) return;
-
-        const newKwhPeople = Array.from({length: Number(numPeople)}, () => ({
-            name: "",
-            prvKwh: "",
-            currKwh: "",
+    const handleNumPeopleChange = () => {
+        const newKwhPeople = Array.from({length: numPeople || 0}, () => ({
+            name: '',
+            prvKwh: '',
+            currKwh: '',
         }));
-        
-        setInputValue(prev => ({...prev, kwhPeople: newKwhPeople}));
-    }, [numPeople]);
+
+        setInputValue(prev => ({
+            ...prev,
+            kwhPeople: newKwhPeople,
+        }));
+    };
 
     const handleClick = () => {
         setBillData(inputValue);
     };
 
 
-    
-    if (!Number.isInteger(numPeople) || Number(numPeople) <= 0) {
-        return null;
-    }
+
+    if (!numPeople) return null;
+
+    if (inputValue.kwhPeople.length !== numPeople) {
+        handleNumPeopleChange();
+        setBillData({}); // also clear the table bill result if the num people change 
+    } 
 
     return (
         <section className="bill-input container mb-5">
+            <div className="mb-4">
+                <hr style={{ border: 'none', height: '1px', backgroundColor: '#CBD5E1', opacity: 1}} />
+                <h2 className="display-5">Enter Bill Details</h2>
+            </div>
+
             <div className="col-12 col-md-4 mb-5">
                 <label htmlFor="total-kwh" className="form-label">Total kWh used this month:</label>
                 <input 
                     type="number" 
-                    className="form-control" 
+                    className="form-control mb-3" 
                     id="total-kwh" 
                     value={inputValue.totalKwh}
                     onChange={(e) => {setInputValue((prev) => ({...prev, totalKwh: e.target.value}))}}
@@ -52,12 +60,12 @@ export default function BillInput({numPeople, setBillData}) {
                 />
             </div>
 
-            <table className="table">
+            <table className="table mb-4">
                 <thead>
                     <tr>
                         <th>Room Number / Name</th>
-                        <th>Room Prv. kWh</th>
-                        <th>Room Curr. kWh</th>
+                        <th>Room Previous kWh</th>
+                        <th>Room Current kWh</th>
                     </tr>
                 </thead>
 
@@ -68,6 +76,7 @@ export default function BillInput({numPeople, setBillData}) {
                                 <input
                                     type="text"
                                     className="form-control w-75"
+                                    placeholder={`Person ${i + 1}`}
                                     value={inputValue.kwhPeople[i].name}
                                     onChange={(e) => {setInputValue((prev) => {
                                         const newKwhPeople = [...prev.kwhPeople];

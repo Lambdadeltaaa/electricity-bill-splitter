@@ -6,7 +6,7 @@ import BillInput from "./components/BillInput.jsx";
 import BillResult from "./components/BillResult.jsx";
 
 export default function App() {
-    const [numPeople, setNumPeople] = useState(0);
+    const [numPeople, setNumPeople] = useState(null);
     const [billData, setBillData] = useState({});
 
     return (

@@ -1,7 +1,5 @@
 export default function BillResult({billData}) {
-    if (!billData || Object.keys(billData).length === 0) {
-        return null;
-    }
+    if (!billData || Object.keys(billData).length === 0) return null;
 
     const totalKwh = +billData.totalKwh;
     const totalPrice = +billData.totalPrice;
@@ -20,8 +18,9 @@ export default function BillResult({billData}) {
     return (
         <footer className="bill-result container mb-5">
             <div>
-                <hr/><h1>Results</h1>
-                <p className="fs-5 mb-5">Common Area Total kWh used: {commonAreaKwh.toFixed(2)}</p>
+                <hr style={{ border: 'none', height: '1px', backgroundColor: '#CBD5E1', opacity: 1}} />
+                <h2 className="display-5">Results</h2>
+                <p className="lead mb-5">Common Area Total kWh used: {commonAreaKwh.toFixed(2)}</p>
             </div>
 
             <table className="table">
@@ -46,8 +45,8 @@ export default function BillResult({billData}) {
                 <tfoot className="table-group-divider">
                     <tr>
                         <td></td>
-                        <td>Total: {totalKwh}</td>
-                        <td>Total: {totalPrice}</td>
+                        <td>Total: {totalKwh.toFixed(2)}</td>
+                        <td>Total: {totalPrice.toFixed(2)}</td>
                     </tr>
                 </tfoot>
             </table>

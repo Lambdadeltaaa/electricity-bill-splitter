@@ -4,7 +4,10 @@ export default function NumPeopleInput({setNumPeople}) {
     const [inputValue, setInputValue] =  useState("");
 
     const handleClick = () => {
-        setNumPeople(Number(inputValue));
+        const numPeople = Number(inputValue.trim());
+
+        if (isNaN(numPeople) || !Number.isInteger(numPeople) || numPeople <= 0) return;
+        setNumPeople(numPeople);
     };
 
     return (
@@ -13,13 +16,13 @@ export default function NumPeopleInput({setNumPeople}) {
                 <label htmlFor="num-people" className="form-label">Enter number of people:</label>
                 <input 
                     type="number" 
-                    className="form-control" 
+                    className="form-control mb-3" 
                     id="num-people"
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                 />
 
-                <button className="btn btn-primary mt-3" onClick={handleClick}>Enter</button>
+                <button className="btn btn-primary" onClick={handleClick}>Enter</button>
             </div>
         </section>
     );
