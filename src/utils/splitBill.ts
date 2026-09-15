@@ -2,12 +2,12 @@ import type { Bill, RoomResult, BillResult} from "../types/bill";
 
 export default function splitBill(bill: Bill): BillResult {
     // find kwh used by each rooms (not including common area) and sum them up
-    const roomIndividualKwhUsed = bill.rooms.map(room => (room.currentKwh - room.previousKwh));
-    const totalIndividualRoomKwh = roomIndividualKwhUsed.reduce((accu, curr) => (accu + curr), 0);
+    const roomUsages = bill.rooms.map(room => (room.currentKwh - room.previousKwh));
+    const totalRoomUsages = roomUsages.reduce((accu, curr) => (accu + curr), 0);
 
 
-    // find common area kwh, then its splitted amount based on included num people
-    const commonAreaKwh = bill.totalKwhUsage - totalIndividualRoomKwh;
+    // find common area kwh, then its splitted amount based on number of people included
+    const commonAreaKwh = bill.totalKwhUsage - totalRoomUsages;
     const commonSplitPeopleCount = bill.rooms
         .filter(room => room.includeCommonAreaSplit)
         .reduce((accu, curr) => (accu + curr.peopleCount), 0);
