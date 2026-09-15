@@ -3,8 +3,8 @@ A simple web app I made to help split a household electricity bill based on indi
 
 Access the web app here: https://split.lambdas.me/
 
-> 📌 **Disclaimer:**
-> This tool is built mainly for personal use in Malaysia, do double-check calculations for important splits if you use it yourself.
+> 📌 **Disclaimer:**  
+> This tool is built mainly for personal use in Malaysia, do double-check calculations for important splits if you use it yourself.  
 > In Malaysia, the proportional formula is no longer accurate when total household usage exceeds 1000kWh. Don't rely on it if so.
 
 
