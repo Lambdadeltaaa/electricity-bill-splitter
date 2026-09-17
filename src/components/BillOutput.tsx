@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { BillResult, Bill } from "../types/bill";
-import splitBill from "../utils/splitBill";
+import splitBill from "../logic/splitBill";
 
 interface BillOutputProps {
     bill: Bill,
